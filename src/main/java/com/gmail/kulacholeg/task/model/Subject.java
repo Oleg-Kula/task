@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -19,6 +21,10 @@ public class Subject {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "classroom_id")
     private Classroom classroom;
+
+    @ManyToMany(mappedBy = "subjects")
+    @JsonIgnore
+    private List<Schedule> schedules = new ArrayList<>();
 
     public Subject(){}
 
@@ -44,5 +50,13 @@ public class Subject {
 
     public void setClassroom(Classroom classroom) {
         this.classroom = classroom;
+    }
+
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }
