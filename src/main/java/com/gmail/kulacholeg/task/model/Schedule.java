@@ -26,7 +26,7 @@ public class Schedule {
     @JoinColumn(name = "group_id")
     private Group group;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "schedules_subjects",
             joinColumns = { @JoinColumn(name = "schedule_id") },
