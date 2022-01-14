@@ -18,7 +18,7 @@ public class Subject {
 
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "classroom_id")
     private Classroom classroom;
 

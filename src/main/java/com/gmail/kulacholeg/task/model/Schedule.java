@@ -1,10 +1,14 @@
 package com.gmail.kulacholeg.task.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -28,7 +32,7 @@ public class Schedule {
             joinColumns = { @JoinColumn(name = "schedule_id") },
             inverseJoinColumns = { @JoinColumn(name = "subject_id") }
     )
-    private List<Subject> subjects = new ArrayList<>();
+    private Set<Subject> subjects = new HashSet<>();
 
     public Schedule(){}
 
@@ -57,11 +61,11 @@ public class Schedule {
         this.group = group;
     }
 
-    public List<Subject> getSubjects() {
+    public Set<Subject> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(List<Subject> subjects) {
+    public void setSubjects(Set<Subject> subjects) {
         this.subjects = subjects;
     }
 }
