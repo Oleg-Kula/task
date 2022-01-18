@@ -29,6 +29,12 @@ public class SchedulesController {
         return schedulesService.getOneSchedule(id);
     }
 
+    @GetMapping("/schedules/student")
+    public List<String> getScheduleForStudent(@RequestParam("dayId") Long dayId,
+                                              @RequestParam("studentId") Long studentId){
+        return schedulesService.getSchedulePerStudentPerDay(dayId, studentId);
+    }
+
     @PostMapping("/schedules")
     public Schedule addSchedule(@RequestBody ObjectNode node){
         return schedulesService.addSchedule(node);

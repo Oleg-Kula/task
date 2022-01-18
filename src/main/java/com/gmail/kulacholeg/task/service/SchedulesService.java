@@ -67,7 +67,9 @@ public class SchedulesService {
         return HttpStatus.OK;
     }
 
-    //get schedule per student
+    public List<String> getSchedulePerStudentPerDay(Long dayId, Long studentId){
+        return schedulesRepository.findSchedulesByStudentAndDay(dayId, studentId);
+    }
 
     private Schedule checkAndSave(ObjectNode objectNode, Schedule schedule) {
         if(daysRepository.findById(objectNode.get("dayId").asLong()).isEmpty())
